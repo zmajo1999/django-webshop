@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Update User Info</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Update your profile information</p>
+        </div>
+    </div>
+</header>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <strong>Billing Information</strong>
+                    <br /><br />
+                    <form method="POST" action="{% url 'update_info' %}">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <br /><br />
+                        <strong>Shipping Information</strong>
+                        <br /><br />
+
+                        {{shipping_form.as_p}}
+
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-secondary btn-block">Update Profile</button>
+                        </div>
+                    </form>
+                    <!-- Profile Dropdown Menu -->
+                    <div class="dropdown mt-3 text-center">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Profile
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item" href="{% url 'update_password' %}">Update Password</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                    <!-- End Profile Dropdown -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
